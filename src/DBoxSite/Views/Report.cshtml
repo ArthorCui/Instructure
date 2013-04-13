@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Report";
+
+    Layout = "~/Views/Shared/_ReportLayout.cshtml";
+}
+
+<script language="javascript" type="text/javascript">
+    $().ready(function () {
+        $('#StartTime').datepicker({ dateFormat: 'yy-mm-dd' });
+        $('#EndTime').datepicker({ dateFormat: 'yy-mm-dd' });
+    });
+</script>
+
+<h2>Report</h2>

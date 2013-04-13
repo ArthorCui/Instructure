@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
+
+  <channel>
+    <atom:link href="http://www.myaudiocast.com/Arthor/rss/" rel="self" type="application/rss+xml" />
+    <title>涓€宸濈儫鑽�</title>
+    <link>http://www.myaudiocast.com/Arthor/</link>
+    <description>涓€涓浜烘弧婊″洖蹇嗙殑鍦版柟锛屽畠鏄爾灞呯殑涓€涓爲娲炪€備笉璋欎笘浜嬶紝鎰垮瞾鏈堥潤濂斤紝鐜颁笘瀹夌ǔ銆�</description>
+    <language>zh-TW</language>
+    <lastBuildDate>Fri, 8 Mar 2013 17:18:49 +0800</lastBuildDate>
+    <itunes:author>娼囦俊椋�</itunes:author>
+    <itunes:owner>
+      <itunes:name>Arthor</itunes:name>
+      <itunes:email>arthor.cui@gmail.com (娼囦俊椋�)</itunes:email>
+    </itunes:owner>
+    <itunes:subtitle></itunes:subtitle>
+    <itunes:summary>涓€涓浜烘弧婊″洖蹇嗙殑鍦版柟锛屽畠鏄爾灞呯殑涓€涓爲娲炪€備笉璋欎笘浜嬶紝鎰垮瞾鏈堥潤濂斤紝鐜颁笘瀹夌ǔ銆�</itunes:summary>
+    <itunes:image href="http://stream.myaudiocast.com/cover/8525/cdf5bf886e764ad4a6f473abafcb9b9a.jpg" />
+    <itunes:category text="Music" />
+    <itunes:explicit>no</itunes:explicit>
+    <item>
+      <title>涓変釜浜虹殑鏃跺厜</title>
+      <link>http://www.myaudiocast.com/Arthor/episode/27976/</link>
+      <description>姣忓綋浣犲洖蹇嗚繃鍘伙紝鎴戞兂鑲畾浼氳Е鍔ㄥ績搴曟渶杞殑涓€鏍瑰鸡鍚с€傝繖绉嶆劅瑙夛紝澶毦鑷嫈浜嗐€俔]</description>
+      <author>arthor.cui@gmail.com (arthor.cui@gmail.com)</author>
+      <enclosure url="http://www.myaudiocast.com/Arthor/episode/27976.mp3" length="506157" type="audio/mpeg" />
+      <guid isPermaLink="true">http://myaudiocast.com/Arthor/episode/27976/</guid>
+      <pubDate>Fri, 8 Mar 2013 16:55:05 +0800</pubDate>
+      <itunes:author>Arthor</itunes:author>
+
+      <itunes:summary>姣忓綋浣犲洖蹇嗚繃鍘伙紝鎴戞兂鑲畾浼氳Е鍔ㄥ績搴曟渶杞殑涓€鏍瑰鸡鍚с€傝繖绉嶆劅瑙夛紝澶毦鑷嫈浜嗐€�</itunes:summary>
+      <itunes:keywords></itunes:keywords>
+      <itunes:explicit>no</itunes:explicit>
+
+    </item>
+
+
+  </channel>
+</rss>

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>@ViewBag.title</title>
+<link href="../../Content/Report/css/main.css" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+@RenderSection("Header", false)
+</head>
+
+<body>
+<script type="text/javascript">
+    $(function () {
+        $('[highlight="true"]').click(function () {
+            $('[highlight="true"]').removeAttr("class");
+            $(this).attr("class", "focus");
+        });
+
+    });
+</script>
+
+    <div class="top">
+        <div style="float: right; line-height: 50px;">
+            <span style="float: left; display: block; padding-right: 15px;">
+        </div>
+    </div>
+<div class="main">
+<div class="left">
+<ul>
+    <li><span class="ico icon-layers"></span>@Html.ActionLink("OTA统计", "Report", "ReportUI", null, new { highlight = "true" })</li>
+</ul>
+</div>
+
+<div class="right">
+<div id="errorInfo" class="error">
+@if (TempData["errorMsg"] != null)
+{
+    @Html.Raw(TempData["errorMsg"].ToString())
+}
+</div>
+@RenderBody()
+</div>
+</div>
+</body>
+</html>
