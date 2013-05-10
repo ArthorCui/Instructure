@@ -45,6 +45,7 @@
       <HintPath>..\..\lib\SubSonic\SubSonic.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ConsoleApp\MailAsyncAppTester.cs" />
     <Compile Include="ConsoleApp\RocketDataAppTester.cs" />
+    <Compile Include="Domain\Service\ImageHandleServiceTester.cs" />
     <Compile Include="Domain\Service\MailServiceTester.cs" />
     <Compile Include="Domain\Service\OTAServiceTester.cs" />
     <Compile Include="Domain\Service\ReportServiceTester.cs" />
