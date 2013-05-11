@@ -28,5 +28,14 @@ namespace UnitTests.Domain.Service
             service.Handle();
         }
 
+        [Fact]
+        public void ImageNameCheckTest()
+        {
+            var fileInput = "E:\\Temp\\imageName.txt";
+            var fileOutput = "E:\\Temp\\imageName2.txt";
+            ImageHandleService service = new ImageHandleService();
+            service.ImageNameCheck(fileInput, fileOutput);
+        }
+
     }
 }

@@ -6,6 +6,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Domain.Service
@@ -32,7 +33,7 @@ namespace Domain.Service
             foreach (var item in originFileList)
             {
                 var originFileUrl = string.Format("{0}{1}", ORIGRINAL_IMAGE_DIR, item.Name);
-                var targetFileUrl = String.Format("{0}{1}", TARGET_IMAGE_DIR,item.Name);
+                var targetFileUrl = String.Format("{0}{1}", TARGET_IMAGE_DIR, item.Name);
 
                 SingalHandle(originFileUrl, targetFileUrl);
             }
@@ -47,7 +48,13 @@ namespace Domain.Service
 
             Bitmap mg = new Bitmap(input);
             Size newSize = new Size(TAGET_HEIGHT, TAGET_WIDTH);
+            var width = mg.Width;
+            var height = mg.Height;
 
+            if (width <= TAGET_HEIGHT && height <= TAGET_WIDTH)
+            {
+                return;
+            }
             var flag = mg.Width - mg.Height;
             if (flag == 0)
             {
@@ -58,7 +65,7 @@ namespace Domain.Service
             }
             else
             {
-                CutForSquare(input,output);
+                CutForSquare(input, output);
             }
 
         }
@@ -369,6 +376,41 @@ namespace Domain.Service
                 //释放原始图片资源
                 initImage.Dispose();
             }
+        }
+
+
+        public void ImageNameCheck(string fileInput, string fileOutput)
+        {
+            var content = string.Empty;
+            var count = 0;
+            using (StreamReader sr = new StreamReader(fileInput))
+            {
+                content = sr.ReadToEnd();
+            }
+            var imageNameList = content.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in imageNameList)
+            {
+                var tt = item.Split('_');
+                var appId = tt[0];
+
+                Regex regNum = new Regex("^[0-9]");
+                if (regNum.IsMatch(appId) && item.Length >= 42 && tt.Length==3)
+                {
+                    var guidId = item.Split('_')[1];
+                    if (guidId.Length == 36 )
+                    {
+                        sb.Append(item);
+                        sb.Append("\r\n");
+                        count++;
+                    }
+                }
+            }
+            using (StreamWriter sw = new StreamWriter(fileOutput))
+            {
+                sw.Write(sb.ToString());
+            }
+            Console.WriteLine(count);
         }
     }
 }
