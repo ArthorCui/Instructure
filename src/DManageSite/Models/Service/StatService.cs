@@ -65,7 +65,7 @@ namespace DManageSite.Models.Service
             where T : State
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}'),\n", state.Id, state.PhoneNumber, state.IMEI, state.IMSI, state.Model, state.Date.ToString("yyyy-MM-dd HH:mm:ss"), state.Address, state.ModelCode, state.CreateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            sb.AppendFormat("('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}'),\n", state.Id, state.PhoneNumber, state.IMEI, state.IMSI, state.Model, state.CreateTime.ToString("yyyy-MM-dd HH:mm:ss"), state.Address, state.ModelCode, state.CreateTime.ToString("yyyy-MM-dd HH:mm:ss"));
             //sb.Append(AppConfigKeys.SALE_BREAK_LINE.ConfigValue());
             return sb.ToString();
         }
