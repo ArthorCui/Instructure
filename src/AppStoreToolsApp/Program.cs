@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace AppStoresToolApp
+namespace AppStoreToolsApp
 {
     static class Program
     {
@@ -15,7 +15,7 @@ namespace AppStoresToolApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AppStoresToolForm());
+            Application.Run(new AppStoreToolsAppForm());
         }
     }
 }

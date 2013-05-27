@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AppStoresApp")]
+[assembly: AssemblyTitle("AppStoreToolsApp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AppStoresApp")]
+[assembly: AssemblyProduct("AppStoreToolsApp")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f609f243-7c8b-44a5-ab07-fe34b291e32a")]
+[assembly: Guid("55e58b61-ca0d-47f8-a9e1-9a2264f22af0")]
 
 // Version information for an assembly consists of the following four values:
 //

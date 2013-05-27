@@ -7,7 +7,7 @@ using TYD.Mobile.Infrastructure.AppStore.Models;
 
 namespace Domain.Interface
 {
-    public interface IAppStoresToolService
+    public interface IAppStoreToolsService
     {
         AppProject GetAppProjectById(string appProjectId);
         IList<App> GetAllAppByAppProject(AppProject appProject);
