@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ConsoleApp\MailAsyncAppTester.cs" />
     <Compile Include="ConsoleApp\RocketDataAppTester.cs" />
+    <Compile Include="Domain\Service\CodeAlgorithmTester.cs" />
     <Compile Include="Domain\Service\ImageHandleServiceTester.cs" />
     <Compile Include="Domain\Service\MailServiceTester.cs" />
     <Compile Include="Domain\Service\OTAServiceTester.cs" />
