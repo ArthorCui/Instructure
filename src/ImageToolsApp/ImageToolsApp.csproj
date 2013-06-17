@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{099C767F-BD2B-4979-97FB-5054334FB363}</ProjectGuid>
+    <ProjectGuid>{2203AD36-DF1F-4FD7-9B97-D25FBB1B5374}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AppStoreToolsApp</RootNamespace>
-    <AssemblyName>AppStoreToolsApp</AssemblyName>
+    <RootNamespace>ImageToolsApp</RootNamespace>
+    <AssemblyName>ImageToolsApp</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,19 +30,25 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=86f0aa1179a5132d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\NCore\NCore.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\..\lib\NLog\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="RedisMapper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=86f0aa1179a5132d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="RedisMapper">
       <HintPath>..\..\lib\RedisMapper\RedisMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\..\lib\ServiceStack\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\..\lib\ServiceStack\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\..\lib\ServiceStack\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\lib\ServiceStack\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\lib\StructureMap\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,52 +60,21 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TYD.Logging">
-      <HintPath>..\..\lib\TYD\TYD.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="TYD.Logging.Core">
-      <HintPath>..\..\lib\TYD\TYD.Logging.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="TYD.Logging.Model">
-      <HintPath>..\..\lib\TYD\TYD.Logging.Model.dll</HintPath>
-    </Reference>
-    <Reference Include="TYD.Mobile.Caching">
-      <HintPath>..\..\lib\TYD\TYD.Mobile.Caching.dll</HintPath>
-    </Reference>
-    <Reference Include="TYD.Mobile.Core">
-      <HintPath>..\..\lib\TYD\TYD.Mobile.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="TYD.Mobile.Infrastructure">
-      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="TYD.Mobile.Infrastructure.AppStore.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.AppStore.Models.dll</HintPath>
-    </Reference>
-    <Reference Include="TYD.Mobile.Infrastructure.Common">
-      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.Common.dll</HintPath>
-    </Reference>
     <Reference Include="TYD.Mobile.Infrastructure.Domain">
       <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.Domain.dll</HintPath>
     </Reference>
-    <Reference Include="TYD.Mobile.Infrastructure.Models">
-      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.Models.dll</HintPath>
-    </Reference>
-    <Reference Include="TYD.Mobile.Web">
-      <HintPath>..\..\lib\TYD\TYD.Mobile.Web.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppStoreToolsAppForm.cs">
+    <Compile Include="ImageToolsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AppStoreToolsAppForm.Designer.cs">
-      <DependentUpon>AppStoreToolsAppForm.cs</DependentUpon>
+    <Compile Include="ImageToolsForm.Designer.cs">
+      <DependentUpon>ImageToolsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AppStoreToolsAppForm.resx">
-      <DependentUpon>AppStoreToolsAppForm.cs</DependentUpon>
+    <EmbeddedResource Include="ImageToolsForm.resx">
+      <DependentUpon>ImageToolsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -111,12 +84,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="NLog.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -126,12 +94,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{8d965c8b-cb11-496a-9338-8ee50f4e1d76}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

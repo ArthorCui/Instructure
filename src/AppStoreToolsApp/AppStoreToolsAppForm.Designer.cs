@@ -34,9 +34,9 @@
             // 
             // button_Execute
             // 
-            this.button_Execute.Location = new System.Drawing.Point(12, 93);
+            this.button_Execute.Location = new System.Drawing.Point(862, 155);
             this.button_Execute.Name = "button_Execute";
-            this.button_Execute.Size = new System.Drawing.Size(75, 23);
+            this.button_Execute.Size = new System.Drawing.Size(125, 49);
             this.button_Execute.TabIndex = 4;
             this.button_Execute.Text = "Execute";
             this.button_Execute.UseVisualStyleBackColor = true;
@@ -58,7 +58,7 @@
             this.Controls.Add(this.textBox_Display);
             this.Controls.Add(this.button_Execute);
             this.Name = "AppStoreToolsAppForm";
-            this.Text = "Form1";
+            this.Text = "AppStoreToolsForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
