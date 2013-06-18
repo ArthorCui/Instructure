@@ -28,8 +28,8 @@ namespace DManageSite.Models.Service
                 if (string.IsNullOrEmpty(id.ToString())) id = 0;
 
                 var startId = id;
-                var endId = id + count;
-                var saleList = this.Repository.Find<State>(x => x.Id > startId && x.Id <= endId).ToList();
+                var saleList = this.Repository.Find<State>(x => x.Id > startId).Take(count).ToList();
+
                 sb.Append(AppConfigKeys.SALE_SQL_PREFIX.ConfigValue());
                 for (int i = 0; i < saleList.Count; i++)
                 {
