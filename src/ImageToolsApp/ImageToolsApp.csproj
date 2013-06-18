@@ -60,6 +60,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TYD.Mobile.Infrastructure.AppStore.Models">
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.AppStore.Models.dll</HintPath>
+    </Reference>
     <Reference Include="TYD.Mobile.Infrastructure.Domain">
       <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.Domain.dll</HintPath>
     </Reference>

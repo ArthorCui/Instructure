@@ -12,7 +12,6 @@ using TYD.Mobile.Core.Helpers;
 using TYD.Mobile.Infrastructure.AppStore.Models;
 using TYD.Mobile.Infrastructure.Domain.Services;
 using NLog;
-using Cronus.Framework.Utilities;
 
 namespace AppStoreToolsApp
 {
@@ -49,11 +48,14 @@ namespace AppStoreToolsApp
 
             var appProjectIdList = RedisService.GetAllActiveModelIds<AppProject>();
 
-            var allVisiableAppProjects = RedisService.GetValuesByIds<AppProject>(appProjectIdList);
+            var allVisiableAppProjects = RedisService.GetValuesByIds<AppProject>(appProjectIdList).Take(10);
+
+            StringBuilder sb = new StringBuilder();
 
             foreach (var itemProject in allVisiableAppProjects)
             {
                 var appProjectId = itemProject.Id;
+
                 var apps = AppStoreUIService.GetAppsFromAppList<AppProject>(appProjectId);
 
                 foreach (var itemApp in apps)
@@ -68,25 +70,39 @@ namespace AppStoreToolsApp
                                     Value = "Android"
                                 };
 
+                    CustomProperty prop_test = new CustomProperty()
+                    {
+                        Id = "0",
+                        Value = "Android"
+                    };
+
+                    RedisService.DeleteCustomPropertyFor<App, CustomProperty>(appId, prop_test);
+
                     var existedOSSettings = RedisService.GetCustomPropertyFrom<App, CustomProperty>(appId, "4");
+                    var setting = itemApp.CustomProperties;
+
                     if (existedOSSettings != null)
                     {
-                        var osValue = existedOSSettings.Value;
+                        var osValue = existedOSSettings.Value.ToString();
                         if (osValue == "Android")
                         {
-                            LogHelper.Info(string.Format("{2}:Id:{0} Name:{1}", appId, appName, osValue));
+                            var outputText_1 = string.Format("{2} - AppProjectId:{3} AppId:{0} Name:{1}", appId, appName, osValue, appProjectId);
+                            sb.AppendLine(outputText_1);
                         }
                         else
                         {
+                            var outputText_2 = string.Format("{2} - AppProjectId:{3} AppId:{0} Name:{1}", appId, appName, osValue, appProjectId);
                             RedisService.AddCustomPropertyFor<App, CustomProperty>(appId, prop);
-                            LogHelper.Info(string.Format("{2}:Id:{0} Name:{1}", appId, appName, osValue));
+                            sb.AppendLine(outputText_2);
                         }
                     }
                     else
                     {
+                        var outputText_3 = string.Format("None OS - AppProjectId:{2} AppId:{0} Name:{1}", appId, appName, appProjectId);
                         RedisService.AddCustomPropertyFor<App, CustomProperty>(appId, prop);
-                        LogHelper.Info(string.Format("None OS:Id:{0} Name:{1}", appId, appName));
+                        sb.AppendLine(outputText_3);
                     }
+
                     #endregion
 
                     #region Platform fro Android
@@ -94,13 +110,17 @@ namespace AppStoreToolsApp
 
                     if (platformType != 8)
                     {
+                        var orginalApp = CloneHelper.DeepClone<App>(itemApp);
                         itemApp.PlatformType = 8;
-                        LogHelper.Info(string.Format("PlatformType:Id:{0} Name{1} Type{2}", appId, appName, platformType));
+                        RedisService.UpdateWithRebuildIndex<App>(orginalApp, itemApp);
+                        var outputText_4 = string.Format("PlatformType:Id:{0} Name:{1} Type:{2}", appId, appName, platformType);
+                        sb.AppendLine(outputText_4);
                     }
                     #endregion
-
                 }
             }
+            this.textBox_Display.Text = sb.ToString();
+            LogManager.GetLogger("InfoLogger").Info(sb.ToString());
         }
 
     }
