@@ -44,6 +44,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\lib\NLog\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="RedisMapper">
       <HintPath>..\..\lib\RedisMapper\RedisMapper.dll</HintPath>
     </Reference>
@@ -69,12 +72,49 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TYD.Mobile.Infrastructure.AppStore.Models">
+    <Reference Include="TYD.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\TYD\TYD.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Logging.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\TYD\TYD.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Logging.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\TYD\TYD.Logging.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Caching, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Infrastructure.AppStore.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.AppStore.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Infrastructure.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.Common.dll</HintPath>
     </Reference>
     <Reference Include="TYD.Mobile.Infrastructure.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Infrastructure.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Web.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
