@@ -46,84 +46,15 @@ namespace AppStoreToolsApp
             //MessageBox.Show("Done");
             #endregion
 
-            var appProjectIdList = RedisService.GetAllActiveModelIds<AppProject>();
+            #region Update App OS Android
+            //svc.UpdateAllAppProperty();
+            #endregion
+            //var appId = "77912";
+            //svc.UpdateApp(appId);
+            var startTime = DateTime.Now.AddHours(-14);
+            var endTime = DateTime.Now.AddHours(-10);
+            svc.UpdateAppByTime(startTime, endTime);
 
-            var allVisiableAppProjects = RedisService.GetValuesByIds<AppProject>(appProjectIdList);
-
-            StringBuilder sb = new StringBuilder();
-
-            sb.AppendLine(allVisiableAppProjects.Count.ToString());
-
-            foreach (var itemProject in allVisiableAppProjects)
-            {
-                var appProjectId = itemProject.Id;
-
-                var apps = AppStoreUIService.GetAppsFromAppList<AppProject>(appProjectId);
-
-                foreach (var itemApp in apps)
-                {
-                    var appId = itemApp.Id;
-                    var appName = itemApp.Name;
-
-                    #region OS for Android
-                    CustomProperty prop = new CustomProperty()
-                                {
-                                    Id = "4",
-                                    Value = "Android"
-                                };
-
-                    CustomProperty prop_test = new CustomProperty()
-                    {
-                        Id = "0",
-                        Value = "Android"
-                    };
-
-                    RedisService.DeleteCustomPropertyFor<App, CustomProperty>(appId, prop_test);
-
-                    var existedOSSettings = RedisService.GetCustomPropertyFrom<App, CustomProperty>(appId, "4");
-
-                    var settings = itemApp.CustomProperties;
-                    if (existedOSSettings != null)
-                    {
-                        var osValue = existedOSSettings.Value.ToString();
-                        if (osValue == "Android")
-                        {
-                            var outputText_1 = string.Format("{2} - AppProjectId:{3} AppId:{0} Name:{1}", appId, appName, osValue, appProjectId);
-                            sb.AppendLine(outputText_1);
-                        }
-                        else
-                        {
-                            var outputText_2 = string.Format("{2} - AppProjectId:{3} AppId:{0} Name:{1}", appId, appName, osValue, appProjectId);
-                            RedisService.AddCustomPropertyFor<App, CustomProperty>(appId, prop);
-                            sb.AppendLine(outputText_2);
-                        }
-                    }
-                    else
-                    {
-                        var outputText_3 = string.Format("None OS - AppProjectId:{2} AppId:{0} Name:{1}", appId, appName, appProjectId);
-                        RedisService.AddCustomPropertyFor<App, CustomProperty>(appId, prop);
-                        sb.AppendLine(outputText_3);
-                    }
-
-                    #endregion
-
-                    #region Platform fro Android
-                    var platformType = itemApp.PlatformType;
-
-                    if (platformType != 8)
-                    {
-                        //var orginalApp = CloneHelper.DeepClone<App>(itemApp);
-                        var originalApp = itemApp;
-                        itemApp.PlatformType = 8;
-                        RedisService.UpdateWithRebuildIndex<App>(originalApp, itemApp);
-                        var outputText_4 = string.Format("PlatformType:Id:{0} Name:{1} Type:{2}", appId, appName, platformType);
-                        sb.AppendLine(outputText_4);
-                    }
-                    #endregion
-                }
-            }
-            this.textBox_Display.Text = sb.ToString();
-            LogManager.GetLogger("InfoLogger").Info(sb.ToString());
         }
 
     }
