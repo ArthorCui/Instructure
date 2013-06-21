@@ -12,6 +12,7 @@ using TYD.Mobile.Core.Helpers;
 using TYD.Mobile.Infrastructure.AppStore.Models;
 using TYD.Mobile.Infrastructure.Domain.Services;
 using NLog;
+using NCore;
 
 namespace AppStoreToolsApp
 {
@@ -20,6 +21,8 @@ namespace AppStoreToolsApp
         public IRedisService RedisService { get; set; }
         public IFileService FileService { get; set; }
         public IAppStoreUIService AppStoreUIService { get; set; }
+        public const string CONFIG_KEY_START_HOUR_INT = "Start_Hour_Int";
+        public const string CONFIG_KEY_END_HOUR_INT = "End_Hour_Int";
 
 
         public AppStoreToolsAppForm()
@@ -51,8 +54,10 @@ namespace AppStoreToolsApp
             #endregion
             //var appId = "77912";
             //svc.UpdateApp(appId);
-            var startTime = DateTime.Now.AddHours(-14);
-            var endTime = DateTime.Now.AddHours(-10);
+            var startTime_Hour_Count = CONFIG_KEY_START_HOUR_INT.ConfigValue().ToInt32();
+            var endTime_Hour_Count = CONFIG_KEY_END_HOUR_INT.ConfigValue().ToInt32();
+            var startTime = DateTime.Now.AddHours(-startTime_Hour_Count);
+            var endTime = DateTime.Now.AddHours(-endTime_Hour_Count);
             svc.UpdateAppByTime(startTime, endTime);
 
         }
