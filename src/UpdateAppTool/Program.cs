@@ -5,10 +5,12 @@ using System.Text;
 
 namespace UpdateAppTool
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+            UpdateAppService svc = new UpdateAppService();
+            svc.RebuilAppIndex();
         }
     }
 }

@@ -32,6 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NCore">
+      <HintPath>..\..\lib\NCore\NCore.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\lib\NLog\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="RedisMapper">
+      <HintPath>..\..\lib\RedisMapper\RedisMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,13 +48,56 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TYD.Logging">
+      <HintPath>..\..\lib\TYD\TYD.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Logging.Core">
+      <HintPath>..\..\lib\TYD\TYD.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Logging.Model">
+      <HintPath>..\..\lib\TYD\TYD.Logging.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Caching">
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Core">
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Infrastructure">
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Infrastructure.AppStore.Models">
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.AppStore.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Infrastructure.Common">
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Infrastructure.Domain">
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Infrastructure.Models">
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Infrastructure.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Mobile.Web">
+      <HintPath>..\..\lib\TYD\TYD.Mobile.Web.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateAppService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{8d965c8b-cb11-496a-9338-8ee50f4e1d76}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

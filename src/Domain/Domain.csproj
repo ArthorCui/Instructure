@@ -63,6 +63,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\SubSonic\SubSonic.Core.dll</HintPath>
     </Reference>
+    <Reference Include="SubSonic.Core.Oracle">
+      <HintPath>..\..\lib\SubSonic\SubSonic.Core.Oracle.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -123,6 +126,7 @@
     <Compile Include="Interface\IReportUIService.cs" />
     <Compile Include="Interface\IRocketDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AppStoresDataService.cs" />
     <Compile Include="Service\AppStoreToolsService.cs" />
     <Compile Include="Service\CodeAlgorithm.cs" />
     <Compile Include="Service\DataService.cs" />

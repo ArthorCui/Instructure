@@ -41,6 +41,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\SubSonic\SubSonic.Core.dll</HintPath>
     </Reference>
+    <Reference Include="SubSonic.Core.Oracle">
+      <HintPath>..\..\lib\SubSonic\SubSonic.Core.Oracle.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,9 +51,19 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TYD.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\TYD\TYD.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="TYD.Logging.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6020c3765b5e7921, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\TYD\TYD.Logging.Model.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppStores\ActiveUser.cs" />
     <Compile Include="AppStores\AppStoresLog.cs" />
+    <Compile Include="AppStores\SecondaryActiveUser.cs" />
     <Compile Include="Base\EntityBase.cs" />
     <Compile Include="Base\MobileParam.cs" />
     <Compile Include="Base\ModelBase.cs" />
