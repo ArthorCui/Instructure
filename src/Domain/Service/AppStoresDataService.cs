@@ -46,8 +46,9 @@ namespace Domain.Service
         {
             foreach (var item in dataList)
             {
-                CommunicationLog result = new DigCommunicationLog();
-                result = item;
+                var dig = new DigCommunicationLog();
+
+
             }
 
 

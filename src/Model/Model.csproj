@@ -61,7 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppStores\ActiveUser.cs" />
+    <Compile Include="AppStores\DigCommunicationLog.cs" />
     <Compile Include="AppStores\AppStoresLog.cs" />
     <Compile Include="AppStores\SecondaryActiveUser.cs" />
     <Compile Include="Base\EntityBase.cs" />
