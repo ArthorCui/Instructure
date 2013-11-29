@@ -70,7 +70,7 @@ namespace Domain.Service
 
         }
 
-        private Bitmap ResizeImage(Bitmap mg, Size newSize)
+        public Bitmap ResizeImage(Bitmap mg, Size newSize)
         {
             double ratio = 0d;
             double myThumbWidth = 0d;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -37,5 +38,21 @@ namespace UnitTests.Domain.Service
             service.ImageNameCheck(fileInput, fileOutput);
         }
 
+        [Fact]
+        public void ResizeImageTest()
+        {
+            ImageHandleService service = new ImageHandleService();
+
+            var input = "D:\\temp\\1111.jpg";
+            var output = "D:\\temp\\1111-1.jpg";
+
+            Size newSize = new Size(450, 300);
+            Bitmap mg = new Bitmap(input);
+
+
+            Bitmap bp = service.ResizeImage(mg, newSize);
+            if (bp != null)
+                bp.Save(output);
+        }
     }
 }
