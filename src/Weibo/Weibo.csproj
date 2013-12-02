@@ -73,7 +73,17 @@
     <Compile Include="Model\OAuth\AuthorizeResult.cs" />
     <Compile Include="Model\OAuth\GetTokenInfoResult.cs" />
     <Compile Include="Model\OAuth\RevokeOAuth2Result.cs" />
+    <Compile Include="Model\Public\AD.cs" />
+    <Compile Include="Model\Public\Comment.cs" />
+    <Compile Include="Model\Public\Geo.cs" />
+    <Compile Include="Model\Public\PicUrls.cs" />
+    <Compile Include="Model\Public\Privacy.cs" />
+    <Compile Include="Model\Public\Remind.cs" />
+    <Compile Include="Model\Public\RetweetedStatus.cs" />
     <Compile Include="Model\Public\Status.cs" />
+    <Compile Include="Model\Public\UrlShort.cs" />
+    <Compile Include="Model\Public\User.cs" />
+    <Compile Include="Model\Public\Visible.cs" />
     <Compile Include="Model\Users\CancelTopStatusResult.cs" />
     <Compile Include="Model\Users\SetTopStatusResult.cs" />
     <Compile Include="Model\Users\CountsResult.cs" />
