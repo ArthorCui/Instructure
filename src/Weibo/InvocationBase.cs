@@ -23,6 +23,8 @@ namespace Weibo
 
         public const string TYPE_FRIENDSHIPS = "2/friendships";
 
+        public const string TYPE_MESSAGES = "2/messages";
+
         protected Dictionary<string, string> NameValues = new Dictionary<string, string>();
 
         protected ServiceProxy Proxy = new ServiceProxy();
