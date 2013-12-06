@@ -6,12 +6,13 @@ using Newtonsoft.Json;
 
 namespace Weibo.Model
 {
-    public class ReceiveMentionResult : ReceiveBaseResult
+    [Serializable]
+    public class ReceiveTextResult : ReceiveResultBase
     {
         /// <summary>
         /// 消息事件内容
         /// </summary>
         [JsonProperty(PropertyName = "data")]
-        public Mention MentionData { get; set; }
+        public Text TextData { get; set; }
     }
 }

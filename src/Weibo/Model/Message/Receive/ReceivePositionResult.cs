@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace Weibo.Model
 {
     [Serializable]
-    public class ReceivePositionResult : ReceiveBaseResult
+    public class ReceivePositionResult : ReceiveResultBase
     {
         /// <summary>
         /// 消息事件内容

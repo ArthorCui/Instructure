@@ -9,7 +9,8 @@ namespace Weibo.Model
     /// <summary>
     /// 消息推送结果基类
     /// </summary>
-    public class ReceiveBaseResult
+    [Serializable]
+    public class ReceiveResultBase
     {
         /// <summary>
         /// 消息ID

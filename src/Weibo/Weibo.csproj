@@ -50,6 +50,7 @@
     <Compile Include="API\FriendShips\Friends.cs" />
     <Compile Include="API\Message\Receive.cs" />
     <Compile Include="API\Message\Reply.cs" />
+    <Compile Include="API\Message\Send.cs" />
     <Compile Include="API\Users\CancelTopStatus.cs" />
     <Compile Include="API\Users\SetTopStatus.cs" />
     <Compile Include="API\Users\Counts.cs" />
@@ -71,20 +72,24 @@
     <Compile Include="Model\Account\GetPrivacyResult.cs" />
     <Compile Include="Model\Account\GetUIdResult.cs" />
     <Compile Include="Model\Account\RateLimitStatusResult.cs" />
-    <Compile Include="Model\Message\Articles.cs" />
-    <Compile Include="Model\Message\Event.cs" />
-    <Compile Include="Model\Message\Image.cs" />
-    <Compile Include="Model\Message\Mention.cs" />
-    <Compile Include="Model\Message\Position.cs" />
-    <Compile Include="Model\Message\ReceiveBaseResult.cs" />
-    <Compile Include="Model\Message\ReceiveEventResult.cs" />
-    <Compile Include="Model\Message\ReceiveImageResult.cs" />
-    <Compile Include="Model\Message\ReceiveMentionResult.cs" />
-    <Compile Include="Model\Message\ReceivePositionResult.cs" />
-    <Compile Include="Model\Message\ReceiveTextResult.cs" />
-    <Compile Include="Model\Message\ReceiveVoiceResult.cs" />
-    <Compile Include="Model\Message\Text.cs" />
-    <Compile Include="Model\Message\Voice.cs" />
+    <Compile Include="Model\Message\Base\Articles.cs" />
+    <Compile Include="Model\Message\Base\Event.cs" />
+    <Compile Include="Model\Message\Base\Image.cs" />
+    <Compile Include="Model\Message\Base\Mention.cs" />
+    <Compile Include="Model\Message\Base\Position.cs" />
+    <Compile Include="Model\Message\Receive\ReceiveResultBase.cs" />
+    <Compile Include="Model\Message\Receive\ReceiveEventResult.cs" />
+    <Compile Include="Model\Message\Receive\ReceiveImageResult.cs" />
+    <Compile Include="Model\Message\Receive\ReceiveMentionResult.cs" />
+    <Compile Include="Model\Message\Receive\ReceivePositionResult.cs" />
+    <Compile Include="Model\Message\Receive\ReceiveTextResult.cs" />
+    <Compile Include="Model\Message\Receive\ReceiveVoiceResult.cs" />
+    <Compile Include="Model\Message\Reply\ReplyArticlesResult.cs" />
+    <Compile Include="Model\Message\Reply\ReplyPositionResult.cs" />
+    <Compile Include="Model\Message\Reply\ReplyResultBase.cs" />
+    <Compile Include="Model\Message\Reply\ReplyTextResult.cs" />
+    <Compile Include="Model\Message\Base\Text.cs" />
+    <Compile Include="Model\Message\Base\Voice.cs" />
     <Compile Include="Model\OAuth\AccessTokenResult.cs" />
     <Compile Include="Model\OAuth\AuthorizeResult.cs" />
     <Compile Include="Model\OAuth\GetTokenInfoResult.cs" />
@@ -111,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interface\" />
+    <Folder Include="Model\Message\Send\" />
     <Folder Include="Service\Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,12 +7,12 @@ using Newtonsoft.Json;
 namespace Weibo.Model
 {
     [Serializable]
-    public class ReceiveVoiceResult : ReceiveBaseResult
+    public class ReceiveMentionResult : ReceiveResultBase
     {
         /// <summary>
         /// 消息事件内容
         /// </summary>
         [JsonProperty(PropertyName = "data")]
-        public Voice VoiceData { get; set; }
+        public Mention MentionData { get; set; }
     }
 }
