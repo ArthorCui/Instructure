@@ -8,6 +8,9 @@ using DManageSite.Models.Entry;
 using DManageSite.Models.Service.Interface;
 using SubSonic.Repository;
 using NCore;
+using SubSonic.DataProviders;
+using SubSonic.Query;
+using System.Data.Common;
 
 namespace DManageSite.Models.Service
 {
@@ -27,8 +30,7 @@ namespace DManageSite.Models.Service
                 StringBuilder sb = new StringBuilder();
                 if (string.IsNullOrEmpty(id.ToString())) id = 0;
 
-                var startId = id;
-                var saleList = this.Repository.Find<State>(x => x.Id > startId).Take(count).ToList();
+                var saleList = GetSaleCollection(id, count);
 
                 sb.Append(AppConfigKeys.SALE_SQL_PREFIX.ConfigValue());
                 for (int i = 0; i < saleList.Count; i++)
@@ -41,13 +43,65 @@ namespace DManageSite.Models.Service
                 }
                 var retData = sb.ToString().TrimEnd('\n').TrimEnd(',');
                 retData = retData.Insert(retData.Length, ";");
-                //retData = retData.Insert(retData.Length, AppConfigKeys.SALE_END_SEPARATE_CHAR.ConfigValue());
+
                 return retData;
             }
             catch (Exception)
             {
                 return string.Empty;
             }
+        }
+
+        public List<State> GetSaleCollection(int id, int count)
+        {
+            var saleList = new List<State>();
+            try
+            {
+                var conn = System.Configuration.ConfigurationManager.ConnectionStrings[AppConfigKeys.SALE_SQL_CONNECT_STRING].ConnectionString;
+
+                var provider = ProviderFactory.GetProvider(conn, "System.Data.SqlClient");
+
+                var command = string.Format("SELECT TOP {0} [Id],[Name],[PhoneNumber],[IMEI],[IMSI],[Model],[Date],[Address],[ProvinceId],[CityId],[BrandId],[HttpUrl],[PostData],[ModelCode],[CreateTime],[Status] FROM [MobileSaleStatMain].[dbo].[State]where id > {1}", count, id);
+
+                var query = new QueryCommand(command, provider);
+                var reader = provider.ExecuteReader(query);
+
+                if (reader != null)
+                {
+                    while (reader.Read())
+                    {
+                        saleList.Add(MapPost(reader));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return saleList;
+        }
+
+        public State MapPost(DbDataReader reader)
+        {
+            State item = new State();
+            item.Id = reader.GetInt32(reader.GetOrdinal("Id"));
+            item.Name = reader.GetString(reader.GetOrdinal("Name"));
+            item.PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+            item.IMEI = reader.GetString(reader.GetOrdinal("IMEI"));
+            item.IMSI = reader.GetString(reader.GetOrdinal("IMSI"));
+            item.Model = reader.GetString(reader.GetOrdinal("Model"));
+            item.Date = reader.GetDateTime(reader.GetOrdinal("Date"));
+            item.Address = reader.GetString(reader.GetOrdinal("Address"));
+            item.ProvinceId = reader.GetInt32(reader.GetOrdinal("ProvinceId"));
+            item.CityId = reader.GetInt32(reader.GetOrdinal("CityId"));
+            item.BrandId = reader.GetInt32(reader.GetOrdinal("BrandId"));
+            item.HttpUrl = reader.GetString(reader.GetOrdinal("HttpUrl"));
+            item.PostData = reader.GetString(reader.GetOrdinal("PostData"));
+            item.ModelCode = reader.GetString(reader.GetOrdinal("ModelCode"));
+            item.CreateTime = reader.GetDateTime(reader.GetOrdinal("CreateTime"));
+            item.Status = reader.GetInt32(reader.GetOrdinal("Status"));
+
+            return item;
         }
 
         private string RegexHttpUrl(string httpUrl)
