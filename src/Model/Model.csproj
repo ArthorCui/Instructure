@@ -61,6 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppStores\DestApp.cs" />
+    <Compile Include="AppStores\DestTag.cs" />
     <Compile Include="AppStores\DigCommunicationLog.cs" />
     <Compile Include="AppStores\AppStoresLog.cs" />
     <Compile Include="AppStores\SecondaryActiveUser.cs" />

@@ -12,6 +12,7 @@ using TYD.Mobile.Infrastructure.AppStore.Models;
 using TYD.Mobile.Infrastructure.Domain.Services;
 using TYD.Mobile.Infrastructure.Domain.StaticData;
 using NLog;
+using System.IO;
 
 namespace Domain.Service
 {
@@ -252,5 +253,45 @@ namespace Domain.Service
             LogManager.GetLogger("InfoLogger").Info(sb.ToString());
         }
 
+        public void GetAllApp()
+        {
+            var appIds = RedisService.GetAllActiveModelIds<App>().ToIdsWithNoPrefix<App>();
+            if (appIds != null && appIds.Count > 0)
+            {
+                LogManager.GetLogger("InfoLogger").Info(appIds.Count);
+                foreach (var id in appIds)
+                {
+                    var taglist = AppStoreUIService.GetTagsByApp(id);
+
+                    var sb = new StringBuilder();
+                    var sb_tag = new StringBuilder();
+
+                    var destTaglist = new List<DestTag>();
+                    var destApp = new DestApp();
+
+                    var app = RedisService.Get<App>(id);
+
+                    foreach (var item in taglist)
+                    {
+
+                        var destTag = new DestTag();
+                        destTag.Id = item.Id;
+                        destTag.TagName = item.Name;
+                        destTaglist.Add(destTag);
+                        sb_tag.Append(item.Name);
+                        sb_tag.Append(";");
+                    }
+                    sb.AppendFormat("AppId:{0} ", id);
+                    sb.AppendFormat("AppNo:{0} ", app.AppNo);
+                    sb.AppendFormat("Tag:{0}", sb_tag.ToString());
+                    sb.Append("\n");
+                    Console.WriteLine(sb.ToString());
+
+                    LogManager.GetLogger("InfoLogger").Info(sb.ToString());
+                    destApp.AppId = id;
+                    destApp.TagList = destTaglist;
+                }
+            }
+        }
     }
 }

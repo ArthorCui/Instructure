@@ -29,7 +29,8 @@ namespace UpdateAppTool
             var endTime_Hour_Count = CONFIG_KEY_END_HOUR_INT.ConfigValue().ToInt32();
             var startTime = DateTime.Now.AddHours(-startTime_Hour_Count);
             var endTime = DateTime.Now.AddHours(-endTime_Hour_Count);
-            svc.UpdateAppByTime(startTime, endTime);
+            //svc.UpdateAppByTime(startTime, endTime);
+            svc.GetAllApp();
         }
     }
 }
