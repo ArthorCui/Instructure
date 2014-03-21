@@ -229,7 +229,7 @@ namespace Domain.Service
                         var appProjectId = itemProject.Id;
 
                         var createTime = itemProject.CreateDateTime;
-                        if (createTime > startTime && createTime < endTime)
+                        if (createTime > startTime && createTime < endTime && itemProject.AppNo.StartsWith("qh360_"))
                         {
                             var apps = AppStoreUIService.GetAppsFromAppList<AppProject>(appProjectId);
                             if (apps != null && apps.Count > 0)
@@ -290,6 +290,111 @@ namespace Domain.Service
                     LogManager.GetLogger("InfoLogger").Info(sb.ToString());
                     destApp.AppId = id;
                     destApp.TagList = destTaglist;
+                }
+            }
+        }
+
+        public void DeleteProject(DateTime startTime, DateTime endTime)
+        {
+            var appProjectIdList = RedisService.GetAllActiveModelIds<AppProject>();
+
+            var allVisiableAppProjects = RedisService.GetValuesByIds<AppProject>(appProjectIdList);
+            if (allVisiableAppProjects != null)
+            {
+                foreach (var itemProject in allVisiableAppProjects)
+                {
+                    var appProjectId = itemProject.Id;
+
+                    var createTime = itemProject.CreateDateTime;
+                    if (createTime > startTime && createTime < endTime)
+                    {
+                        LogManager.GetLogger("InfoLogger").Info(string.Format("appprojectId:{0},name:{1},time:{2}", appProjectId, itemProject.Name, itemProject.CreateDateTime));
+                        //DeleteSingle(appProjectId);
+                    }
+                }
+            }
+        }
+
+        public void DeleteSingle(string appProjectId)
+        {
+            var tags = AppStoreUIService.GetTagsByAppProject(appProjectId);
+            if (tags != null)
+            {
+                foreach (var t in tags)
+                {
+                    AppStoreUIService.DeleteTagFromAppProject(t.Id, appProjectId);
+                }
+            }
+            var apps = this.AppStoreUIService.GetAppsFromAppList<AppProject>(appProjectId);
+
+            if (apps != null)
+            {
+                foreach (var app in apps)
+                {
+                    var appTags = AppStoreUIService.GetTagsByApp(app.Id);
+                    if (appTags != null)
+                    {
+                        foreach (var t in appTags)
+                        {
+                            AppStoreUIService.DeleteTagForApp(t.Id, app.Id);
+                        }
+                    }
+                    DeleteRedundanceForAppBranch(app.Id);
+                    RedisService.DeleteWithCustomProperties<App, CustomProperty>(app.Id);
+                    DeleteAppSettingForAppColumn(app.Id);
+                }
+            }
+
+            //delete LogoFile 
+            RedisService.DeleteWithCustomProperties<AppProject, CustomProperty>(appProjectId);
+        }
+
+        private void DeleteRedundanceForAppBranch(string appId)
+        {
+            //delete LogoImage
+            var app = RedisService.Get<App>(appId);
+            if (app.Logo != null)
+            {
+                var logoImage = app.Logo;
+                RedisService.Delete<ImageInfo>(logoImage);
+            }
+
+            //delete ScreenShotImage
+            var screenShotImages = app.ScreenShot;
+            if (screenShotImages != null)
+            {
+                foreach (var screenShotImage in screenShotImages)
+                {
+                    RedisService.Delete<ImageInfo>(screenShotImage);
+                }
+            }
+
+            //delete ClientLogosImage
+            var clientLogoImages = app.ClientLogos;
+            if (clientLogoImages != null)
+            {
+                foreach (var clientLogoImage in clientLogoImages)
+                {
+                    RedisService.Delete<ClientImageInfo>(clientLogoImage);
+                }
+            }
+        }
+
+        private void DeleteAppSettingForAppColumn(string appId)
+        {
+            var appColumnIds = RedisService.GetAllActiveModelIds<AppColumn>();
+            if (appColumnIds != null)
+            {
+                foreach (var appColumnId in appColumnIds)
+                {
+                    var appSettings = RedisService.GetAllSubModelsByType<AppColumn, AppSettingsForAppList>(appColumnId);
+                    foreach (var appSetting in appSettings)
+                    {
+                        if (appSetting.Id == appId)
+                        {
+                            AppStoreUIService.DeleteAppFromAppList<AppColumn>(appColumnId, appId);
+                        }
+                    }
                 }
             }
         }
