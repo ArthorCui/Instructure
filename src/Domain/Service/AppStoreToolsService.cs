@@ -306,10 +306,10 @@ namespace Domain.Service
                     var appProjectId = itemProject.Id;
 
                     var createTime = itemProject.CreateDateTime;
-                    if (createTime > startTime && createTime < endTime)
+                    if (createTime > startTime && createTime < endTime && itemProject.AppNo.StartsWith("qh360_"))
                     {
-                        LogManager.GetLogger("InfoLogger").Info(string.Format("appprojectId:{0},name:{1},time:{2}", appProjectId, itemProject.Name, itemProject.CreateDateTime));
-                        //DeleteSingle(appProjectId);
+                        LogManager.GetLogger("InfoLogger").Info(string.Format("appNo:{3},appprojectId:{0},name:{1},time:{2}\r\n", appProjectId, itemProject.Name, itemProject.CreateDateTime,itemProject.AppNo));
+                        DeleteSingle(appProjectId);
                     }
                 }
             }
@@ -317,6 +317,7 @@ namespace Domain.Service
 
         public void DeleteSingle(string appProjectId)
         {
+            var sb = new StringBuilder();
             var tags = AppStoreUIService.GetTagsByAppProject(appProjectId);
             if (tags != null)
             {
@@ -324,6 +325,7 @@ namespace Domain.Service
                 {
                     AppStoreUIService.DeleteTagFromAppProject(t.Id, appProjectId);
                 }
+                sb.AppendFormat("delete project tags:{0}\r\n",tags.Count);
             }
             var apps = this.AppStoreUIService.GetAppsFromAppList<AppProject>(appProjectId);
 
@@ -338,18 +340,22 @@ namespace Domain.Service
                         {
                             AppStoreUIService.DeleteTagForApp(t.Id, app.Id);
                         }
+                        sb.AppendFormat("delete app tags:{0}\r\n", appTags.Count);
                     }
-                    DeleteRedundanceForAppBranch(app.Id);
+                    DeleteRedundanceForAppBranch(app.Id,sb);
                     RedisService.DeleteWithCustomProperties<App, CustomProperty>(app.Id);
-                    DeleteAppSettingForAppColumn(app.Id);
+                    sb.Append("delete app CustomProperties success.\r\n");
+                    DeleteAppSettingForAppColumn(app.Id,sb);
                 }
             }
 
             //delete LogoFile 
             RedisService.DeleteWithCustomProperties<AppProject, CustomProperty>(appProjectId);
+            sb.Append("delete appproject CustomProperties success.\r\n");
+            LogManager.GetLogger("InfoLogger").Info(sb.ToString());
         }
 
-        private void DeleteRedundanceForAppBranch(string appId)
+        private void DeleteRedundanceForAppBranch(string appId, StringBuilder sb)
         {
             //delete LogoImage
             var app = RedisService.Get<App>(appId);
@@ -357,6 +363,7 @@ namespace Domain.Service
             {
                 var logoImage = app.Logo;
                 RedisService.Delete<ImageInfo>(logoImage);
+                sb.Append("delete app logoImage success.\r\n");
             }
 
             //delete ScreenShotImage
@@ -367,6 +374,7 @@ namespace Domain.Service
                 {
                     RedisService.Delete<ImageInfo>(screenShotImage);
                 }
+                sb.AppendFormat("delete app screenShotImages {0}\r\n", screenShotImages.Count);
             }
 
             //delete ClientLogosImage
@@ -377,10 +385,11 @@ namespace Domain.Service
                 {
                     RedisService.Delete<ClientImageInfo>(clientLogoImage);
                 }
+                sb.AppendFormat("delete app clientLogoImages {0}\r\n", clientLogoImages.Count);
             }
         }
 
-        private void DeleteAppSettingForAppColumn(string appId)
+        private void DeleteAppSettingForAppColumn(string appId, StringBuilder sb)
         {
             var appColumnIds = RedisService.GetAllActiveModelIds<AppColumn>();
             if (appColumnIds != null)
@@ -395,7 +404,9 @@ namespace Domain.Service
                             AppStoreUIService.DeleteAppFromAppList<AppColumn>(appColumnId, appId);
                         }
                     }
+                    sb.AppendFormat("delete appSettings {0}\r\n", appSettings.Count);
                 }
+                sb.AppendFormat("delete appColumnIds {0}\r\n", appColumnIds.Count);
             }
         }
     }

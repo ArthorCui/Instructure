@@ -31,7 +31,7 @@ namespace UpdateAppTool
             var endTime = DateTime.Now.AddHours(-endTime_Hour_Count);
             //svc.UpdateAppByTime(startTime, endTime);
             //svc.GetAllApp();
-            svc.DeleteProject(DateTime.Now.AddDays(-7), DateTime.Now);
+            svc.DeleteProject(DateTime.Now.AddDays(-8), DateTime.Now);
         }
     }
 }
