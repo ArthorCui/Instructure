@@ -1,4 +1,4 @@
-Instructure
+TYD Integration
 ===========
 
 TYD Company Ltd.Co
